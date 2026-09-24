@@ -1,0 +1,469 @@
+/* ==============================================================
+   TARJETERO NFC — HOJA DE ESTILOS
+   --------------------------------------------------------------
+   Organización del archivo:
+     1. Variables de color y tipografía  ← aquí cambias la marca
+     2. Base
+     3. Encabezado
+     4. Banner del evento
+     5. Filtros de categoría
+     6. Cuadrícula y tarjetas
+     7. Pie de página
+   ============================================================== */
+
+
+/* ==============================================================
+   1. VARIABLES — CAMBIA LA MARCA AQUÍ Y SE PROPAGA A TODO
+   ==============================================================
+   --accent es el azul institucional. Si cambia el color de marca,
+   basta modificar esta línea y la de la versión oscura más abajo.
+   -------------------------------------------------------------- */
+
+:root {
+  /* Superficies y texto (modo claro) */
+  --ground:      #F1F4F8;   /* fondo general de la página */
+  --surface:     #FFFFFF;   /* fondo de tarjetas y botones */
+  --surface-alt: #E5EBF3;   /* fondo de miniaturas sin imagen */
+  --ink:         #14181F;   /* texto principal */
+  --ink-soft:    #3A4552;   /* texto secundario */
+  --muted:       #63707F;   /* descripciones y etiquetas */
+  --line:        #D4DCE7;   /* bordes y separadores */
+
+  /* Marca */
+  --accent:      #004D9D;   /* AZUL INSTITUCIONAL */
+  --accent-soft: #DDE8F5;   /* versión clara, para tramas de fondo */
+  --on-accent:   #FFFFFF;   /* texto encima del azul */
+
+  --shadow: 0 1px 2px rgba(20, 24, 31, .06), 0 6px 16px -10px rgba(20, 24, 31, .30);
+  --radius: 10px;           /* redondeo de tarjetas y banner */
+
+  /* Tipografías. El segundo nombre en adelante es el respaldo
+     si no hay internet para cargar Google Fonts. */
+  --f-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-body:    "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:    "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+}
+
+/* --------------------------------------------------------------
+   MODO OSCURO (cuando el celular lo tiene activado)
+   El #004D9D puro no se lee sobre fondo negro, por eso aquí se
+   usa una versión aclarada del mismo azul.
+   -------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:      #0E1116;
+    --surface:     #171B22;
+    --surface-alt: #1F252E;
+    --ink:         #E9EDF3;
+    --ink-soft:    #C0C8D3;
+    --muted:       #8896A6;
+    --line:        #2A313B;
+    --accent:      #6FA8EE;
+    --accent-soft: #132A44;
+    --on-accent:   #08121E;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 8px 20px -12px rgba(0, 0, 0, .8);
+  }
+}
+
+/* Mismo bloque, para cuando el modo se fuerza con
+   <html data-theme="dark"> en el index.html */
+:root[data-theme="dark"] {
+  --ground:      #0E1116;
+  --surface:     #171B22;
+  --surface-alt: #1F252E;
+  --ink:         #E9EDF3;
+  --ink-soft:    #C0C8D3;
+  --muted:       #8896A6;
+  --line:        #2A313B;
+  --accent:      #6FA8EE;
+  --accent-soft: #132A44;
+  --on-accent:   #08121E;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 8px 20px -12px rgba(0, 0, 0, .8);
+}
+
+
+/* ==============================================================
+   2. BASE
+   ============================================================== */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Contenedor central. Sube max-width si quieres la página más
+   ancha en monitores grandes. */
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-inline: 18px;   /* margen lateral en celular */
+  padding-block: 0 48px;
+}
+
+
+/* ==============================================================
+   3. ENCABEZADO
+   ============================================================== */
+
+.topbar {
+  height: 5px;
+  background: var(--accent);
+}
+
+header.head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-block: 26px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Nombre del campus. El tamaño crece con la pantalla:
+   mínimo 2.05rem, máximo 3.1rem. */
+h1 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(2.05rem, 7.5vw, 3.1rem);
+  letter-spacing: -.025em;
+  line-height: 1.05;
+  text-wrap: balance;
+  color: var(--accent);
+  margin: 0;
+}
+
+.lede {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+
+/* ==============================================================
+   4. BANNER DEL EVENTO DESTACADO
+   ==============================================================
+   Proporción: 16:9 en celular y 3:1 de 640px en adelante.
+   Por eso conviene subir imágenes apaisadas y con el motivo
+   principal al centro: los bordes se recortan.
+   -------------------------------------------------------------- */
+
+.banner {
+  position: relative;
+  display: block;
+  margin-top: 20px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--accent);
+  text-decoration: none;
+  color: inherit;
+  aspect-ratio: 16 / 9;
+  max-height: 380px;
+  transition: border-color .16s ease;
+}
+
+@media (min-width: 640px) {
+  .banner { aspect-ratio: 3 / 1; }
+}
+
+a.banner:hover { border-color: var(--accent); }
+a.banner:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;   /* recorta sin deformar */
+  display: block;
+}
+
+/* Fondo azul con trama diagonal: se usa cuando BANNER.imagen
+   está vacío o si la imagen no carga. */
+.banner-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(115deg,
+      rgba(255, 255, 255, .10) 0 14px,
+      transparent 14px 34px),
+    linear-gradient(135deg, #004D9D 0%, #013974 100%);
+}
+
+/* Velo oscuro detrás del texto. Sin esto, el título desaparece
+   sobre imágenes claras. Sube el primer valor (.80) si tus fotos
+   son muy brillantes. */
+.banner-scrim {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 16px 18px;
+  background: linear-gradient(to top,
+    rgba(4, 12, 24, .80) 0%,
+    rgba(4, 12, 24, .45) 45%,
+    rgba(4, 12, 24, .05) 100%);
+  color: #FFFFFF;
+}
+
+.banner-tag {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, .18);
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 999px;
+  padding: 3px 9px;
+  width: fit-content;
+  margin-bottom: 3px;
+}
+
+.banner-titulo {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 4.2vw, 1.85rem);
+  letter-spacing: -.015em;
+  line-height: 1.15;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.banner-texto {
+  margin: 0;
+  font-size: .92rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .88);
+  max-width: 54ch;
+}
+
+
+/* ==============================================================
+   5. FILTROS DE CATEGORÍA
+   ============================================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding-block: 18px 16px;
+}
+
+.chip {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Categoría seleccionada */
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Número de tarjetas dentro de cada categoría */
+.chip .n {
+  font-variant-numeric: tabular-nums;
+  opacity: .65;
+  margin-left: 5px;
+}
+
+
+/* ==============================================================
+   6. CUADRÍCULA Y TARJETAS
+   ==============================================================
+   El número de columnas es automático: cada tarjeta mide al menos
+   15.5rem (~248px) y se acomodan las que quepan. Baja ese valor
+   para tener más columnas, súbelo para tarjetas más grandes.
+   -------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr));
+  gap: 14px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow);
+  transition: transform .16s ease, border-color .16s ease;
+}
+
+.card:hover { transform: translateY(-2px); border-color: var(--accent); }
+.card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* Miniatura de la tarjeta: siempre 16:9 */
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  background: var(--surface-alt);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Monograma automático con las iniciales del título, para las
+   tarjetas que no traen imagen propia. */
+.mono-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    repeating-linear-gradient(135deg,
+      var(--accent-soft) 0 9px,
+      transparent 9px 18px),
+    var(--surface-alt);
+}
+
+.mono-mark span {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: -.03em;
+  color: var(--accent);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 6px 12px;
+  line-height: 1;
+}
+
+/* Etiqueta azul de público objetivo (campo "publico" en datos.js) */
+.publico {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  max-width: calc(100% - 16px);
+  background: var(--accent);
+  color: var(--on-accent);
+  border-radius: 999px;
+  padding: 4px 10px 4px 8px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.publico svg { width: 12px; height: 12px; flex: none; }
+.publico span { overflow-wrap: anywhere; }
+
+/* Cuerpo de texto de la tarjeta */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 14px 12px;
+  flex: 1;
+}
+
+.card h2 {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.card p {
+  margin: 0;
+  font-size: .89rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Renglón inferior: categoría a la izquierda, "Abrir" a la derecha */
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.meta .go {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color .16s ease;
+}
+
+.card:hover .meta .go { color: var(--accent); }
+.meta .go svg { width: 12px; height: 12px; }
+
+
+/* ==============================================================
+   7. PIE DE PÁGINA
+   ============================================================== */
+
+footer {
+  margin-top: 34px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .05em;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  justify-content: space-between;
+}
+
+
+/* Respeta a quien pidió menos animación en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .card:hover { transform: none; }
+}

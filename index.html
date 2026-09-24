@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ============================================================
+       TÍTULO DE LA PESTAÑA DEL NAVEGADOR
+       Cámbialo aquí. No es el título que se ve en la página
+       (ese está en js/datos.js, en CONFIG.titulo).
+       ============================================================ -->
+  <title>Campus Ciudad de México · Accesos rápidos</title>
+
+  <meta name="description" content="Repositorio de accesos rápidos a archivos, tableros y trámites del campus.">
+
+  <!-- Color de la barra del navegador en celular (azul institucional) -->
+  <meta name="theme-color" content="#004D9D">
+
+  <!-- Ícono de la pestaña. Reemplaza favicon.svg por el logo si lo tienes. -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- ============================================================
+       TIPOGRAFÍAS (requieren internet)
+       Si el sitio debe funcionar sin conexión, descarga las fuentes
+       y declara @font-face en css/estilos.css. Sin internet, el
+       navegador usa las tipografías de respaldo y la página
+       se sigue viendo bien.
+       ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap">
+
+  <!-- Todo el diseño vive aquí -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+  <!-- Franja azul superior. Para quitarla, borra esta línea. -->
+  <div class="topbar"></div>
+
+  <div class="wrap">
+
+    <!-- Encabezado. Los textos salen de CONFIG en js/datos.js -->
+    <header class="head">
+      <h1 id="page-title"></h1>
+      <p class="lede" id="page-lede"></p>
+    </header>
+
+    <!-- Aquí se inserta el banner del evento (BANNER en js/datos.js) -->
+    <div id="banner-slot"></div>
+
+    <!-- Botones de categoría. Se generan solos a partir de LIGAS. -->
+    <nav class="filters" id="filters" aria-label="Filtrar por categoría"></nav>
+
+    <!-- Cuadrícula de tarjetas. Se genera sola a partir de LIGAS. -->
+    <main class="grid" id="grid"></main>
+
+    <footer>
+      <span id="foot-count"></span>
+      <span id="foot-date"></span>
+    </footer>
+
+  </div>
+
+  <!-- ============================================================
+       ORDEN DE LOS SCRIPTS: datos.js SIEMPRE antes que app.js.
+       datos.js  = lo que tú editas (textos, banner y ligas)
+       app.js    = el motor que dibuja la página
+       ============================================================ -->
+  <script src="js/datos.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
