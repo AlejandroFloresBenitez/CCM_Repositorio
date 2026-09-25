@@ -149,59 +149,6 @@ const LIGAS = [
   },
 
   /* ------------------------------------------------------------
-     LIGAS DE RELLENO — datos ficticios, reemplázalas
-     Estas no traen imagen, para que veas cómo se ve el monograma
-     automático mezclado con las tarjetas que sí tienen foto.
-     ------------------------------------------------------------ */
-
-  {
-    titulo: "Ocupación de salones",
-    descripcion: "Disponibilidad de aulas y laboratorios por bloque horario.",
-    url: "https://example.com/salones",
-    categoria: "Centro de Programación",
-    publico: "Dirección de Campus"
-  },
-
-  {
-    titulo: "Actas de evaluación",
-    descripcion: "Formato oficial para el cierre de calificaciones del periodo.",
-    url: "https://example.com/actas",
-    categoria: "Administración Académica",
-    publico: "Dirección de Departamento"
-  },
-
-  {
-    titulo: "Tablero de indicadores",
-    descripcion: "Seguimiento de reprobación y promedio por materia.",
-    url: "https://example.com/indicadores",
-    categoria: "Analítica de Datos",
-    publico: "Dirección de Escuela"
-  },
-
-  {
-    titulo: "Calendario escolar 2026",
-    descripcion: "Fechas oficiales de inicio, exámenes y cierre de periodo.",
-    url: "https://example.com/calendario",
-    categoria: "Escolares"
-  },
-
-  {
-    titulo: "Solicitud de constancias",
-    descripcion: "Trámite en línea de constancias, kárdex y certificados.",
-    url: "https://example.com/constancias",
-    categoria: "Escolares",
-    publico: "Dirección de Campus"
-  },
-
-  {
-    titulo: "Reserva de salas de estudio",
-    descripcion: "Apartado de cubículos por bloques de dos horas.",
-    url: "https://example.com/salas",
-    categoria: "Biblioteca"
-  }
-
-
-  /* ------------------------------------------------------------
      PLANTILLA PARA COPIAR Y PEGAR UNA TARJETA NUEVA
      Acuérdate de poner una coma después de la llave } de la
      tarjeta anterior.
