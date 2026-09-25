@@ -124,6 +124,14 @@ const LIGAS = [
     imagen: "img/tarjetas/directorio.jpg"
   },
 
+  {
+    titulo: "202613 - ADN de Profesional",
+    descripcion: "Seguimiento de alumnos activos en CCM.",
+    url: "https://tec.rs/202613_ADN_CCM",
+    categoria: "Analítica de Datos",
+    publico: "Dirección de Campus"
+  },
+
 
   /* ------------------------------------------------------------
      LIGAS DE RELLENO — datos ficticios, reemplázalas
