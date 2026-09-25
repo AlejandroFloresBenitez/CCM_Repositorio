@@ -32,7 +32,7 @@ const CONFIG = {
   descripcion: "Toca una tarjeta para poder visualizar el contenido seleccionado.",
 
   // Se muestra en el pie. Actualízala cuando cambies las ligas.
-  actualizado: "14 de septiembre de 2026"
+  actualizado: "25 de septiembre de 2026"
 
 };
 
