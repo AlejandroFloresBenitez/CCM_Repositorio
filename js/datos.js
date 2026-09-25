@@ -99,21 +99,45 @@ const LIGAS = [
      ------------------------------------------------------------ */
 
   {
-    titulo: "Última programación - 202613",
+    titulo: "Dirección de Servicios Académicos",
+    descripcion: "Sito oficial de la DSA para CCM.",
+    url: "https://tecmx.sharepoint.com/sites/EI2/SitePages/serviciosacademicos.aspx",
+    categoria: "Servicios Académicos",
+    publico: "Campus Ciudad de México"
+  },
+
+  {
+    titulo: "202613 - ADN de Profesional",
+    descripcion: "Seguimiento de alumnos activos en CCM.",
+    url: "https://tec.rs/202613_ADN_CCM",
+    categoria: "Analítica de Datos",
+    publico: "Campus Ciudad de México"
+  },
+   
+  {
+    titulo: "202613 - Última programación",
     descripcion: "Archivo de programación de grupos del semestre actual.",
-    url: "https://tecmx.sharepoint.com/:x:/s/CCM-ServiciosEscolares/IQAQP4sCA8m1SaUExMaibvAlARg9gkXQzeHYh_nvk4lkjsQ?e=Qt6TIP",
+    url: "https://tecmx.sharepoint.com/:x:/s/CCM-ServiciosEscolares/IQCH6cOzfOBAT78Z3R5Z8Vp5AdQYXm-R7goQ6epirDZlr-Y?e=b9Lpeo",
     categoria: "Centro de Programación",
     publico: "Dirección de Departamento",
     imagen: "img/tarjetas/programacion.jpg"
   },
 
   {
-    titulo: "Calificaciones de Periodo 1",
-    descripcion: "Calificaciones de los grupos de profesional de PMT1.",
-    url: "https://tecmx-my.sharepoint.com/:x:/r/personal/serviciosescolares_servicios_tec_mx/_layouts/15/Doc.aspx?sourcedoc=%7B331E4B61-381A-4A3F-86F6-39D4E40C812A%7D&file=Calificaciones%20PMT1%20-%202026_09_14.xlsx&action=default&mobileredirect=true",
+    titulo: "Calificaciones PMT1 + ST06",
+    descripcion: "Calificaciones de los grupos de profesional de PMT1 t de Semana Tec 6",
+    url: "https://tecmx-my.sharepoint.com/:x:/r/personal/serviciosescolares_servicios_tec_mx/_layouts/15/Doc.aspx?sourcedoc=%7BDE18C19A-E124-4CCD-81FF-3E6AA81C2CC4%7D&file=Calificaciones%20PMT1%20%2B%20ST06%20-%202026_09_25.xlsx&action=default&mobileredirect=true",
     categoria: "Administración Académica",
     publico: "Dirección de Escuela",
     imagen: "img/tarjetas/calificaciones.jpg"
+  },
+
+  {
+    titulo: "Tablero CAG FJ26",
+    descripcion: "Seguimiento de alumnos candidatos a graduar en el periodo 202613 en CCM.",
+    url: "https://tecmx-my.sharepoint.com/:x:/r/personal/diego_a_banq_tec_mx/Documents/Graduaciones/Documentos%20de%20Seguimiento%20periodos/Graduaci%C3%B3n%202613%20para%20compartir/CAG%20PROFE%20VALIDACI%C3%93N%202613-drive.xlsx?d=w575ae80128b44607bb6b2b4cd8ec8d33&csf=1&web=1&e=uiBOuA",
+    categoria: "Certificación y Graduación",
+    publico: "Campus Ciudad de México"
   },
 
   {
@@ -123,15 +147,6 @@ const LIGAS = [
     categoria: "Analítica de Datos",
     imagen: "img/tarjetas/directorio.jpg"
   },
-
-  {
-    titulo: "202613 - ADN de Profesional",
-    descripcion: "Seguimiento de alumnos activos en CCM.",
-    url: "https://tec.rs/202613_ADN_CCM",
-    categoria: "Analítica de Datos",
-    publico: "Dirección de Campus"
-  },
-
 
   /* ------------------------------------------------------------
      LIGAS DE RELLENO — datos ficticios, reemplázalas
