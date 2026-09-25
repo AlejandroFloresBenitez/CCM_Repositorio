@@ -111,7 +111,8 @@ const LIGAS = [
     descripcion: "Seguimiento de alumnos activos en CCM.",
     url: "https://tec.rs/202613_ADN_CCM",
     categoria: "Analítica de Datos",
-    publico: "Campus Ciudad de México"
+    publico: "Campus Ciudad de México",
+    imagen: "img/tarjetas/ADN_Profesional.jpg"
   },
    
   {
