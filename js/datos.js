@@ -107,6 +107,15 @@ const LIGAS = [
   },
 
   {
+    titulo: "Dirección de Servicios Escolares",
+    descripcion: "Sito oficial de la DSE para CCM.",
+    url: "https://tecmx.sharepoint.com/sites/CCM-ServiciosEscolares/SitePages/CollabHome.aspx?ovuser=c65a3ea6-0f7c-400b-8934-5a6dc1705645%2cvaleria.hernandezc%40tec.mx&OR=Teams-HL&CT=1727461507380&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNDA5MDEwMTQxNyIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3d%3d&CID=7d6e54a1-a0ee-6000-76e8-28800322fd5e&cidOR=SPO",
+    categoria: "Servicios Escolares",
+    publico: "Campus Ciudad de México",
+     imagen: "img/tarjetas/sitio_escolares.jpg"
+  },
+
+  {
     titulo: "202613 - ADN de Profesional",
     descripcion: "Seguimiento de alumnos activos en CCM.",
     url: "https://tec.rs/202613_ADN_CCM",
