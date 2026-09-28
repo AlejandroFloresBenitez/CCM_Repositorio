@@ -134,12 +134,19 @@ const LIGAS = [
   },
 
   {
-    titulo: "Calificaciones PMT1 + ST06",
-    descripcion: "Calificaciones de los grupos de profesional de PMT1 t de Semana Tec 6",
-    url: "https://tecmx-my.sharepoint.com/:x:/r/personal/serviciosescolares_servicios_tec_mx/_layouts/15/Doc.aspx?sourcedoc=%7BDE18C19A-E124-4CCD-81FF-3E6AA81C2CC4%7D&file=Calificaciones%20PMT1%20%2B%20ST06%20-%202026_09_25.xlsx&action=default&mobileredirect=true",
+    titulo: "Reportes de Calificaciones: Profesional",
+    descripcion: "Reportes de calificaciones de nivel profesional de CCM",
+    url: "https://tecmx-my.sharepoint.com/shared?listurl=https%3A%2F%2Ftecmx%2Dmy%2Esharepoint%2Ecom%2Fpersonal%2Fserviciosescolares%5Fservicios%5Ftec%5Fmx%2FDocuments&id=%2Fpersonal%2Fserviciosescolares%5Fservicios%5Ftec%5Fmx%2FDocuments%2FSitio%20DSA%2FAdministraci%C3%B3n%20Acad%C3%A9mica%2FReportes%20de%20Seguimiento%2FCALIFICACIONES%2F202613&viewid=b9d18317%2D3743%2D4f31%2D92da%2D08d07caa32af&shareLink=1&ga=1",
     categoria: "Administración Académica",
-    publico: "Dirección de Escuela",
-    imagen: "img/tarjetas/calificaciones.jpg"
+    publico: "Dirección de Escuela"
+  },
+
+  {
+    titulo: "Reportes de Calificaciones: Preparatoria",
+    descripcion: "Reportes de calificaciones de nivel preparatoria de CCM",
+    url: "https://tecmx.sharepoint.com/sites/CCM-ServiciosEscolares/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FCCM%2DServiciosEscolares%2FDocumentos%20compartidos%2FGeneral%2FPREPARATORIA%2FCalificaciones%20parciales%20y%20finales%2F202613&viewid=99e82701%2Db169%2D4373%2Dae15%2De013f45eeb9f&p=true&ga=1",
+    categoria: "Administración Académica",
+    publico: "Dirección de Escuela"
   },
 
   {
