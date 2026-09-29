@@ -54,13 +54,13 @@ const CONFIG = {
 
 const BANNER = {
 
-  imagen: "img/banner/evento-destacado.jpg",
+  imagen: "img/banner/CCM_Banner.jpg",
 
-  etiqueta: "Evento destacado",
-  titulo: "Semana de Innovación 2026",
-  texto: "Del 5 al 9 de octubre en el Centro de Congresos. Registro abierto para toda la comunidad.",
+  //etiqueta: "",
+  //titulo: "Semana de Innovación 2026",
+  //texto: "Del 5 al 9 de octubre en el Centro de Congresos. Registro abierto para toda la comunidad.",
 
-  url: ""
+  //url: ""
 
 };
 
