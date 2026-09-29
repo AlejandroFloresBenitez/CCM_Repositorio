@@ -159,6 +159,22 @@ const LIGAS = [
   },
 
   {
+    titulo: "Formulario para solicitud de Materiales y Servicios para Semana Tec 12 AD26",
+    descripcion: "Formulario para solicitar Materiales y Servicios para la Semana Tec 12 de AD26",
+    url: "https://tecmx.sharepoint.com/:l:/s/ServiciosyProyectosAcadmicos-CCM/JAD-NictAjEZSY1m013ssgHDAUBHh1JDs2DTamM25d6bJkk?nav=MzZkMWNiZjctODE0ZC00NjM4LTgwZTgtOWU1NmI0ZjVhNzlm",
+    categoria: "Servicios y Proyectos Académicos",
+    publico: "Dirección de Departamento"
+  },
+ 
+  {
+    titulo: "Formulario para solicitud de Espacios Macro para Semana Tec 12 AD26",
+    descripcion: "Formulario para solicitar Espacios Macro para la Semana Tec 12 de AD26",
+    url: "https://tecmx.sharepoint.com/:l:/s/ServiciosyProyectosAcadmicos-CCM/JADA5zMKHiBYQqqnxghB-QElAWi2jWjQGW04APQ_fSqvmAA?nav=NzA4ZjAyNTgtMGFjOS00OTdjLTkzZjAtMjlhMzM0OTdhODNk2", 
+    categoria: "Servicios y Proyectos Académicos",
+    publico: "Dirección de Departamento"
+  },
+
+  {
     titulo: "Directorio de Campus",
     descripcion: "Contactos del personal operativo del Campus Ciudad de México.",
     url: "https://datastudio.google.com/reporting/931f3a92-94e1-4779-9c86-3490f70d7c7c/page/MDhWF",
