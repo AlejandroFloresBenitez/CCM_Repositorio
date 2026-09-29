@@ -159,7 +159,7 @@ const LIGAS = [
   },
 
   {
-    titulo: "Formulario para solicitud de Materiales y Servicios para Semana Tec 12 AD26",
+    titulo: "Formulario para solicitud de Materiales y Servicios para Semana Tec 12",
     descripcion: "Formulario para solicitar Materiales y Servicios para la Semana Tec 12 de AD26",
     url: "https://tecmx.sharepoint.com/:l:/s/ServiciosyProyectosAcadmicos-CCM/JAD-NictAjEZSY1m013ssgHDAUBHh1JDs2DTamM25d6bJkk?nav=MzZkMWNiZjctODE0ZC00NjM4LTgwZTgtOWU1NmI0ZjVhNzlm",
     categoria: "Servicios y Proyectos Académicos",
