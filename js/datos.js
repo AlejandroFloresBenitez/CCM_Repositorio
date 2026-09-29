@@ -131,7 +131,7 @@ const LIGAS = [
     url: "https://tecmx.sharepoint.com/:x:/s/CCM-ServiciosEscolares/IQCH6cOzfOBAT78Z3R5Z8Vp5AdQYXm-R7goQ6epirDZlr-Y?e=b9Lpeo",
     categoria: "Centro de Programación",
     publico: "Dirección de Departamento",
-    imagen: "img/tarjetas/programacion.jpg"
+    imagen: "img/tarjetas/programacion_grupos.jpg"
   },
 
   {
@@ -175,6 +175,13 @@ const LIGAS = [
     url: "https://datastudio.google.com/reporting/931f3a92-94e1-4779-9c86-3490f70d7c7c/page/MDhWF",
     categoria: "Analítica de Datos",
     imagen: "img/tarjetas/directorio_campus.jpg"
+  },
+
+  {
+    titulo: "Calculadora de Promedios",
+    descripcion: "Calculadora online de promedios ponderados para alumnos de profesional.",
+    url: "https://docs.google.com/spreadsheets/d/1cZJ37D7aykr15tVl87z9GA6P4ResLRaVpmdCkfZyIsI/copy",
+    categoria: "Coordinación de SEDENA/SEMAR"
   }
 
   
