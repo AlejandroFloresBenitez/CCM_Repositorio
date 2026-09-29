@@ -157,7 +157,8 @@ const LIGAS = [
     descripcion: "Seguimiento de alumnos candidatos a graduar en el periodo 202613 en CCM.",
     url: "https://tecmx-my.sharepoint.com/:x:/r/personal/diego_a_banq_tec_mx/Documents/Graduaciones/Documentos%20de%20Seguimiento%20periodos/Graduaci%C3%B3n%202613%20para%20compartir/CAG%20PROFE%20VALIDACI%C3%93N%202613-drive.xlsx?d=w575ae80128b44607bb6b2b4cd8ec8d33&csf=1&web=1&e=uiBOuA",
     categoria: "Certificación y Graduación",
-    publico: "Campus Ciudad de México"
+    publico: "Campus Ciudad de México",
+    imagen: "img/tarjetas/tablero_CAG.jpg"
   },
 
   {
