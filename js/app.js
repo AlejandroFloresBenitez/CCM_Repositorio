@@ -7,8 +7,10 @@
    Ábrelo solo si quieres cambiar comportamiento, por ejemplo:
      - Que las ligas abran en la misma pestaña en vez de una nueva
        → busca ABRIR_EN_PESTANA_NUEVA, abajo.
-     - Que el filtro arranque en otra categoría
-       → busca categoriaActiva.
+     - Que el buscador aparezca con más o menos tarjetas
+       → busca MINIMO_PARA_BUSCADOR.
+     - El texto de ayuda dentro del buscador
+       → busca TEXTO_BUSCADOR.
    ============================================================== */
 
 (function () {
@@ -25,6 +27,13 @@
 
   // Texto del primer botón de filtro
   const ETIQUETA_TODO = "Todo";
+
+  // El buscador solo aparece a partir de este número de tarjetas.
+  // Con pocas ligas estorba más de lo que ayuda.
+  const MINIMO_PARA_BUSCADOR = 6;
+
+  // Texto gris que se ve dentro del campo vacío
+  const TEXTO_BUSCADOR = "Buscar por nombre, categoría o dirección…";
 
 
   /* ------------------------------------------------------------
@@ -44,21 +53,35 @@
     'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
     '<path d="M6 18L18 6"></path><path d="M9 6h9v9"></path></svg>';
 
+  const ICONO_LUPA =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" ' +
+    'stroke-linecap="round" aria-hidden="true">' +
+    '<circle cx="10.5" cy="10.5" r="6.5"></circle>' +
+    '<path d="M15.4 15.4L21 21"></path></svg>';
+
+  const ICONO_LIMPIAR =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" ' +
+    'stroke-linecap="round" aria-hidden="true">' +
+    '<path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>';
+
 
   /* ------------------------------------------------------------
      REFERENCIAS A LOS HUECOS DEL index.html
      ------------------------------------------------------------ */
 
-  const elTitulo   = document.getElementById("page-title");
-  const elLede     = document.getElementById("page-lede");
-  const elBanner   = document.getElementById("banner-slot");
-  const elFiltros  = document.getElementById("filters");
-  const elGrid     = document.getElementById("grid");
-  const elConteo   = document.getElementById("foot-count");
-  const elFecha    = document.getElementById("foot-date");
+  const elTitulo  = document.getElementById("page-title");
+  const elLede    = document.getElementById("page-lede");
+  const elBanner  = document.getElementById("banner-slot");
+  const elFiltros = document.getElementById("filters");
+  const elGrid    = document.getElementById("grid");
+  const elConteo  = document.getElementById("foot-count");
+  const elFecha   = document.getElementById("foot-date");
 
-  // Categoría seleccionada al abrir la página
+  // Estado actual de la página
   let categoriaActiva = ETIQUETA_TODO;
+  let textoBusqueda = "";
+  let campoBusqueda = null;
+  let botonLimpiar = null;
 
 
   /* ------------------------------------------------------------
@@ -136,6 +159,110 @@
     }
 
     elBanner.appendChild(cont);
+  }
+
+
+  /* ------------------------------------------------------------
+     BUSCADOR
+     ------------------------------------------------------------ */
+
+  // Quita acentos y pasa a minúsculas, para que "programacion"
+  // encuentre "Programación" y "DIRECCION" encuentre "Dirección".
+  function normalizar(texto) {
+    return String(texto || "")
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "")
+      .toLowerCase();
+  }
+
+  // Texto de una tarjeta contra el que se busca: título,
+  // descripción, categoría y público objetivo.
+  function textoBuscable(item) {
+    return normalizar([
+      item.titulo,
+      item.descripcion,
+      item.categoria,
+      item.publico
+    ].join(" "));
+  }
+
+  // Todas las palabras escritas deben aparecer, en cualquier orden.
+  // Así "biblioteca salas" encuentra la tarjeta de reserva de salas.
+  function coincide(item, palabras) {
+    if (!palabras.length) return true;
+    const heno = textoBuscable(item);
+    return palabras.every(function (p) { return heno.indexOf(p) !== -1; });
+  }
+
+  function palabrasBuscadas() {
+    return normalizar(textoBusqueda).split(/\s+/).filter(Boolean);
+  }
+
+  function construirBuscador() {
+    // Con pocas tarjetas no se dibuja
+    if (LIGAS.length < MINIMO_PARA_BUSCADOR) return;
+
+    const cont = document.createElement("div");
+    cont.className = "search";
+
+    const lupa = document.createElement("span");
+    lupa.className = "search-icon";
+    lupa.innerHTML = ICONO_LUPA;
+
+    campoBusqueda = document.createElement("input");
+    campoBusqueda.type = "search";
+    campoBusqueda.id = "buscador";
+    campoBusqueda.placeholder = TEXTO_BUSCADOR;
+    campoBusqueda.setAttribute("aria-label", "Buscar entre los accesos");
+    campoBusqueda.setAttribute("autocomplete", "off");
+    campoBusqueda.setAttribute("autocorrect", "off");
+    campoBusqueda.setAttribute("autocapitalize", "off");
+    campoBusqueda.setAttribute("spellcheck", "false");
+    campoBusqueda.setAttribute("enterkeyhint", "search");
+    // Sin autofocus a propósito: en celular abriría el teclado
+    // encima de las tarjetas apenas se escanea el llavero.
+
+    botonLimpiar = document.createElement("button");
+    botonLimpiar.type = "button";
+    botonLimpiar.className = "search-clear";
+    botonLimpiar.setAttribute("aria-label", "Limpiar búsqueda");
+    botonLimpiar.innerHTML = ICONO_LIMPIAR;
+    botonLimpiar.hidden = true;
+
+    campoBusqueda.addEventListener("input", function () {
+      textoBusqueda = campoBusqueda.value;
+      botonLimpiar.hidden = textoBusqueda.length === 0;
+      pintarFiltros();
+      pintarGrid();
+    });
+
+    // Enter cierra el teclado en celular en vez de recargar
+    campoBusqueda.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        campoBusqueda.blur();
+      }
+      if (e.key === "Escape") limpiarBusqueda();
+    });
+
+    botonLimpiar.addEventListener("click", function () {
+      limpiarBusqueda();
+      campoBusqueda.focus();
+    });
+
+    cont.appendChild(lupa);
+    cont.appendChild(campoBusqueda);
+    cont.appendChild(botonLimpiar);
+
+    elFiltros.parentNode.insertBefore(cont, elFiltros);
+  }
+
+  function limpiarBusqueda() {
+    textoBusqueda = "";
+    if (campoBusqueda) campoBusqueda.value = "";
+    if (botonLimpiar) botonLimpiar.hidden = true;
+    pintarFiltros();
+    pintarGrid();
   }
 
 
@@ -234,20 +361,81 @@
 
 
   /* ------------------------------------------------------------
-     CUADRÍCULA Y FILTROS
+     FILTRADO
+     ------------------------------------------------------------
+     Son dos filtros que se aplican uno tras otro:
+     primero la búsqueda, después la categoría.
      ------------------------------------------------------------ */
 
-  function ligasVisibles() {
-    if (categoriaActiva === ETIQUETA_TODO) return LIGAS;
-    return LIGAS.filter(function (l) { return l.categoria === categoriaActiva; });
+  function porBusqueda() {
+    const palabras = palabrasBuscadas();
+    return LIGAS.filter(function (l) { return coincide(l, palabras); });
+  }
+
+  function visibles() {
+    const base = porBusqueda();
+    if (categoriaActiva === ETIQUETA_TODO) return base;
+    return base.filter(function (l) { return l.categoria === categoriaActiva; });
+  }
+
+
+  /* ------------------------------------------------------------
+     CUADRÍCULA
+     ------------------------------------------------------------ */
+
+  function crearEstadoVacio(totalEnOtrasCategorias) {
+    const caja = document.createElement("div");
+    caja.className = "vacio";
+
+    const p = document.createElement("p");
+    if (categoriaActiva !== ETIQUETA_TODO && totalEnOtrasCategorias > 0) {
+      p.append("No hay resultados para ");
+      const fuerte = document.createElement("strong");
+      fuerte.textContent = "“" + textoBusqueda.trim() + "”";
+      p.append(fuerte, " dentro de " + categoriaActiva + ".");
+    } else if (textoBusqueda.trim()) {
+      p.append("No se encontró nada para ");
+      const fuerte = document.createElement("strong");
+      fuerte.textContent = "“" + textoBusqueda.trim() + "”";
+      p.append(fuerte, ". Revisa la escritura o busca con una palabra más corta.");
+    } else {
+      p.textContent = "No hay accesos en esta categoría.";
+    }
+    caja.appendChild(p);
+
+    if (categoriaActiva !== ETIQUETA_TODO && totalEnOtrasCategorias > 0) {
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.textContent = "Buscar en todas las categorías (" + totalEnOtrasCategorias + ")";
+      boton.addEventListener("click", function () {
+        categoriaActiva = ETIQUETA_TODO;
+        pintarFiltros();
+        pintarGrid();
+      });
+      caja.appendChild(boton);
+    }
+
+    return caja;
   }
 
   function pintarGrid() {
-    const lista = ligasVisibles();
+    const lista = visibles();
+
+    if (lista.length === 0) {
+      elGrid.replaceChildren(crearEstadoVacio(porBusqueda().length));
+      elConteo.textContent = "Sin resultados";
+      return;
+    }
+
     elGrid.replaceChildren.apply(elGrid, lista.map(crearTarjeta));
     elConteo.textContent =
       lista.length + (lista.length === 1 ? " acceso visible" : " accesos visibles");
   }
+
+
+  /* ------------------------------------------------------------
+     FILTROS DE CATEGORÍA
+     ------------------------------------------------------------ */
 
   function pintarFiltros() {
     // Las categorías se deducen solas de LIGAS, en el orden en que
@@ -259,18 +447,24 @@
       }
     });
 
+    // Los números de cada botón cuentan solo lo que coincide con la
+    // búsqueda activa, para que el filtro no prometa lo que no hay.
+    const encontradas = porBusqueda();
+
     const botones = categorias.map(function (c) {
+      const cuantas = (c === ETIQUETA_TODO)
+        ? encontradas.length
+        : encontradas.filter(function (l) { return l.categoria === c; }).length;
+
       const b = document.createElement("button");
-      b.className = "chip";
+      b.className = "chip" + (cuantas === 0 ? " vacia" : "");
       b.type = "button";
       b.setAttribute("aria-pressed", String(c === categoriaActiva));
       b.textContent = c;
 
       const n = document.createElement("span");
       n.className = "n";
-      n.textContent = (c === ETIQUETA_TODO)
-        ? LIGAS.length
-        : LIGAS.filter(function (l) { return l.categoria === c; }).length;
+      n.textContent = cuantas;
       b.appendChild(n);
 
       b.addEventListener("click", function () {
@@ -292,6 +486,7 @@
 
   pintarEncabezado();
   pintarBanner();
+  construirBuscador();
   pintarFiltros();
   pintarGrid();
 
