@@ -104,7 +104,7 @@ const LIGAS = [
     url: "https://tecmx.sharepoint.com/sites/EI2/SitePages/serviciosacademicos.aspx",
     categoria: "Servicios Académicos",
     publico: "Campus Ciudad de México",
-    imagen: "img/tarjetas/sitio_DSA.jpeg"
+    imagen: "img/tarjetas/sitio_DSA.png"
   },
 
   {
@@ -180,7 +180,9 @@ const LIGAS = [
     url: "https://datastudio.google.com/reporting/931f3a92-94e1-4779-9c86-3490f70d7c7c/page/MDhWF",
     categoria: "Analítica de Datos",
     imagen: "img/tarjetas/directorio_campus.jpg"
-  },
+  }
+
+  
 
   /* ------------------------------------------------------------
      PLANTILLA PARA COPIAR Y PEGAR UNA TARJETA NUEVA
