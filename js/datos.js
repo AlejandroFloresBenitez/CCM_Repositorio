@@ -128,7 +128,7 @@ const LIGAS = [
   {
     titulo: "202613 - Última programación",
     descripcion: "Archivo de programación de grupos del semestre actual.",
-    url: "https://tecmx.sharepoint.com/:x:/s/CCM-ServiciosEscolares/IQCH6cOzfOBAT78Z3R5Z8Vp5AdQYXm-R7goQ6epirDZlr-Y?e=b9Lpeo",
+    url: "https://tecmx.sharepoint.com/:x:/s/CCM-ServiciosEscolares/IQABwztOELxiTJU9shX0AY-_ATubnvdFCnioZ61bLOjCSFk?e=5m9NRA",
     categoria: "Centro de Programación",
     publico: "Dirección de Departamento",
     imagen: "img/tarjetas/programacion_grupos.jpg"
