@@ -160,14 +160,6 @@ const LIGAS = [
     publico: "Campus Ciudad de México",
     imagen: "img/tarjetas/tablero_CAG.jpg"
   },
-
-  {
-    titulo: "Formulario para solicitud de Materiales y Servicios para Semana Tec 12",
-    descripcion: "Formulario para solicitar Materiales y Servicios para la Semana Tec 12 de AD26",
-    url: "https://tecmx.sharepoint.com/:l:/s/ServiciosyProyectosAcadmicos-CCM/JAD-NictAjEZSY1m013ssgHDAUBHh1JDs2DTamM25d6bJkk?nav=MzZkMWNiZjctODE0ZC00NjM4LTgwZTgtOWU1NmI0ZjVhNzlm",
-    categoria: "Servicios y Proyectos Académicos",
-    publico: "Dirección de Departamento"
-  },
  
   {
     titulo: "Directorio de Campus",
